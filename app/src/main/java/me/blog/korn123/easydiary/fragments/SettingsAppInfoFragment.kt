@@ -56,11 +56,11 @@ class SettingsAppInfoFragment() : androidx.fragment.app.Fragment() {
     private val mOnClickListener = View.OnClickListener { view ->
         when (view.id) {
             R.id.rateAppSetting -> {
-                if (BuildConfig.FLAVOR == "foss") {
-                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getStoreUrl())))
-                } else {
+//                if (BuildConfig.FLAVOR == "foss") {
+//                    startActivity(Intent(Intent.ACTION_VIEW, Uri.parse(getStoreUrl())))
+//                } else {
                     requireActivity().openGooglePlayBy("me.blog.korn123.easydiary")
-                }
+         //       }
             }
             R.id.licenseView -> {
                 TransitionHelper.startActivityWithTransition(requireActivity(), Intent(requireActivity(), MarkDownViewerActivity::class.java).apply {
@@ -117,11 +117,11 @@ class SettingsAppInfoFragment() : androidx.fragment.app.Fragment() {
     }
 
     private fun initPreference() {
-        mBinding.rateAppSettingSummary.text = String.format("v%s_%s_%s (%d)", BuildConfig.VERSION_NAME, BuildConfig.FLAVOR, BuildConfig.BUILD_TYPE, BuildConfig.VERSION_CODE)
+        mBinding.rateAppSettingSummary.text = String.format("v%s_%s_%s (%d)", BuildConfig.VERSION_NAME, "BuildConfig.FLAVOR", BuildConfig.BUILD_TYPE, BuildConfig.VERSION_CODE)
     }
 
     private fun setupInvite() {
-        mBinding.inviteSummary.text = String.format(getString(R.string.invite_friends_summary), getString(R.string.app_name))
+        mBinding.inviteSummary.text = String.format("",getString(R.string.invite_friends_summary), getString(R.string.app_name))
         mBinding.invite.setOnClickListener {
             val text = String.format(getString(R.string.share_text), getString(R.string.app_name), getStoreUrl())
             Intent().apply {
@@ -135,6 +135,6 @@ class SettingsAppInfoFragment() : androidx.fragment.app.Fragment() {
     }
 
     private fun getStoreUrl(): String {
-        return if (BuildConfig.FLAVOR == "foss") "https://f-droid.org/packages/${requireActivity().packageName}/" else "https://play.google.com/store/apps/details?id=${requireActivity().packageName}"
+        return  "https://play.google.com/store/apps/details?id=${requireActivity().packageName}"
     }
 }

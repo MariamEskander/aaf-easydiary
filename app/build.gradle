@@ -13,16 +13,16 @@ ext.versions = [
 android {
     compileSdkVersion versions.compileSdk
 
-    Properties properties = new Properties()
-    properties.load(project.rootProject.file('local.properties').newDataInputStream())
-    signingConfigs {
-        config {
-            keyAlias 'android'
-            keyPassword properties.getProperty("storePassword")
-            storeFile file(properties.getProperty("storeFile"))
-            storePassword properties.getProperty("storePassword")
-        }
-    }
+//    Properties properties = new Properties()
+//    properties.load(project.rootProject.file('local.properties').newDataInputStream())
+//    signingConfigs {
+//        config {
+//            keyAlias 'android'
+//            keyPassword properties.getProperty("storePassword")
+//            storeFile file(properties.getProperty("storeFile"))
+//            storePassword properties.getProperty("storePassword")
+//        }
+//    }
 
     /**
      * @versionName: major.minor.maintenance(versionCode).hotfix(date+sequence)
@@ -39,44 +39,44 @@ android {
         multiDexEnabled true
         renderscriptTargetApi 18
         renderscriptSupportModeEnabled true
-        signingConfig signingConfigs.config
+      //  signingConfig signingConfigs.config
 //        ndk.debugSymbolLevel = 'FULL'
     }
 //    ndkVersion "25.2.9519653"
     flavorDimensions += "buildType"
     productFlavors {
-        gmsProd {
-            dimension "buildType"
-            signingConfig signingConfigs.config
-        }
-        gmsDev {
-            dimension "buildType"
-            signingConfig signingConfigs.config
-        }
-        foss {
-            dimension "buildType"
-            signingConfig signingConfigs.config
-        }
+//        gmsProd {
+//            dimension "buildType"
+//            signingConfig signingConfigs.config
+//        }
+//        gmsDev {
+//            dimension "buildType"
+//            signingConfig signingConfigs.config
+//        }
+//        foss {
+//            dimension "buildType"
+//            signingConfig signingConfigs.config
+//        }
     }
     sourceSets {
-        gmsProd {
-            manifest.srcFile 'src/gms/AndroidManifest.xml'
-            java {
-                srcDirs 'src/main/java', 'src/gmsProd/java', 'src/gms/java'
-            }
-        }
-        gmsDev {
-            manifest.srcFile 'src/gms/AndroidManifest.xml'
-            java {
-                srcDirs 'src/main/java', 'src/gmsDev/java', 'src/gms/java'
-            }
-        }
-        foss {
-            manifest.srcFile 'src/foss/AndroidManifest.xml'
-            java {
-                srcDirs 'src/main/java', 'src/foss/java'
-            }
-        }
+//        gmsProd {
+//            manifest.srcFile 'src/gms/AndroidManifest.xml'
+//            java {
+//                srcDirs 'src/main/java', 'src/gmsProd/java', 'src/gms/java'
+//            }
+//        }
+//        gmsDev {
+//            manifest.srcFile 'src/gms/AndroidManifest.xml'
+//            java {
+//                srcDirs 'src/main/java', 'src/gmsDev/java', 'src/gms/java'
+//            }
+//        }
+//        foss {
+//            manifest.srcFile 'src/foss/AndroidManifest.xml'
+//            java {
+//                srcDirs 'src/main/java', 'src/foss/java'
+//            }
+//        }
     }
     buildFeatures{
         dataBinding true
@@ -84,23 +84,23 @@ android {
         compose true
     }
     buildTypes {
-        release {
-            minifyEnabled true // Use Android app bundle
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            applicationVariants.all { variant ->
-                variant.outputs.each { output ->
-                    def releaseFileName = "easy_diary-$versionName-${new Date().format('yyyyMMddHHmmss')}.apk"
-                    println(output.outputFileName)
-                    println("releaseFileName: $releaseFileName")
-                    output.outputFileName = releaseFileName
-                }
-            }
-            signingConfig signingConfigs.config
-        }
+//        release {
+//            minifyEnabled true // Use Android app bundle
+//            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+//            applicationVariants.all { variant ->
+//                variant.outputs.each { output ->
+//                    def releaseFileName = "easy_diary-$versionName-${new Date().format('yyyyMMddHHmmss')}.apk"
+//                    println(output.outputFileName)
+//                    println("releaseFileName: $releaseFileName")
+//                    output.outputFileName = releaseFileName
+//                }
+//            }
+//            signingConfig signingConfigs.config
+//        }
         debug {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            signingConfig signingConfigs.config
+           // signingConfig signingConfigs.config
         }
     }
     packagingOptions {
@@ -160,20 +160,20 @@ dependencies {
     debugImplementation 'androidx.compose.ui:ui-tooling:1.7.8'
 
     // google components for develop package (not foss)
-    gmsDevImplementation 'com.google.android.gms:play-services-auth:21.3.0'
-    gmsDevImplementation 'com.google.api-client:google-api-client-android:1.26.0'
-    gmsDevImplementation 'com.google.apis:google-api-services-drive:v3-rev136-1.25.0'
-    gmsDevImplementation 'com.google.apis:google-api-services-calendar:v3-rev411-1.25.0'
-    gmsDevImplementation 'com.google.http-client:google-http-client-gson:1.26.0'
+    implementation 'com.google.android.gms:play-services-auth:21.3.0'
+    implementation 'com.google.api-client:google-api-client-android:1.26.0'
+    implementation 'com.google.apis:google-api-services-drive:v3-rev136-1.25.0'
+    implementation 'com.google.apis:google-api-services-calendar:v3-rev411-1.25.0'
+    implementation 'com.google.http-client:google-http-client-gson:1.26.0'
 
     // google components for production package (not foss)
-    gmsProdImplementation 'com.google.android.gms:play-services-auth:21.3.0'
-    gmsProdImplementation 'com.google.android.play:review:2.0.2'
-    gmsProdImplementation 'com.google.android.play:review-ktx:2.0.2'
-    gmsProdImplementation 'com.google.api-client:google-api-client-android:1.26.0'
-    gmsProdImplementation 'com.google.apis:google-api-services-drive:v3-rev136-1.25.0'
-    gmsProdImplementation 'com.google.apis:google-api-services-calendar:v3-rev411-1.25.0'
-    gmsProdImplementation 'com.google.http-client:google-http-client-gson:1.26.0'
+    implementation 'com.google.android.gms:play-services-auth:21.3.0'
+    implementation 'com.google.android.play:review:2.0.2'
+    implementation 'com.google.android.play:review-ktx:2.0.2'
+    implementation 'com.google.api-client:google-api-client-android:1.26.0'
+    implementation 'com.google.apis:google-api-services-drive:v3-rev136-1.25.0'
+    implementation 'com.google.apis:google-api-services-calendar:v3-rev411-1.25.0'
+    implementation 'com.google.http-client:google-http-client-gson:1.26.0'
 
     // google components common
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
@@ -249,4 +249,7 @@ dependencies {
     testImplementation 'androidx.test.ext:truth:1.6.0'
     testImplementation 'junit:junit:4.13.2'
     testImplementation 'org.robolectric:robolectric:4.11.1'
+
+
+    implementation 'com.instabug.library:instabug:15.0.2'
 }

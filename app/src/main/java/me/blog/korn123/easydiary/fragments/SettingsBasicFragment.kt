@@ -103,7 +103,7 @@ class SettingsBasicFragment : androidx.fragment.app.Fragment() {
     @OptIn(ExperimentalLayoutApi::class)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (BuildConfig.FLAVOR == "foss") mSettingsViewModel.setEnableReviewFlowVisible(false)
+        //if (BuildConfig.FLAVOR == "foss") mSettingsViewModel.setEnableReviewFlowVisible(false)
         mSettingsViewModel.setEnableCardViewPolicy(requireActivity().config.enableCardViewPolicy)
 
         updateFragmentUI(mBinding.root)

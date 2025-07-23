@@ -212,7 +212,7 @@ class QuickSettingsActivity : EasyDiaryComposeBaseActivity() {
                     disableFutureDiary = !disableFutureDiary
                 }
             }
-            if (BuildConfig.FLAVOR != "foss") {
+            //if (BuildConfig.FLAVOR != "foss") {
                 item {
                     val bottomPadding = if (isVanillaIceCreamPlus()) WindowInsets.navigationBars.asPaddingValues().calculateBottomPadding() else 0.dp
                     SimpleCard(
@@ -229,7 +229,7 @@ class QuickSettingsActivity : EasyDiaryComposeBaseActivity() {
                         AlarmWorkExecutor(this@QuickSettingsActivity).run { executeWork(alarm) }
                     }
                 }
-            }
+           // }
         }
     }
 

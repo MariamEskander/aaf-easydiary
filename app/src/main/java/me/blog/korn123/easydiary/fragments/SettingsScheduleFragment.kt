@@ -239,7 +239,7 @@ class SettingsScheduleFragment() : androidx.fragment.app.Fragment() {
                     updateAppViews(root)
                     FontUtils.setFontsTypeface(this@activity, null, root)
 
-                    if (BuildConfig.FLAVOR == "foss") radioDiaryBackupGms.visibility = View.GONE
+                   // if (BuildConfig.FLAVOR == "foss") radioDiaryBackupGms.visibility = View.GONE
                 }
 
                 alertDialog = builder.create().apply {
